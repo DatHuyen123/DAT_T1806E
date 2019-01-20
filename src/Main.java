@@ -1,29 +1,35 @@
 import java.util.Scanner;
 
 public class Main {
-    public int he_so = 0;
-
-    public enum seasion{mua_xuan,mua_thu,mua_dong};
+    private static Scanner scanner = new Scanner(System.in);
 
     public static void main(String[] args) {
-        int a;
-        System.out.println("nhập vào số: ");
-        Scanner scanner = new Scanner(System.in);
-        a = scanner.nextInt();
-        System.out.println("Giai thừa của " + a + " là: "
-                + Main.tinhGiaithua(a));
-
-    }
-    public static long tinhGiaithua(int n) {
-        long giai_thua = 1;
-        if (n == 0 || n == 1) {
-            return giai_thua;
+        System.out.println("nhập vào số n: ");
+        int n = scanner.nextInt();
+        System.out.print("các số nguyên tố nhỏ hơn " + n + "là: ");
+        if (n == 2) {
+            System.out.print(2);
         } else {
-            for (int i = 2; i <= n; i++) {
-                giai_thua *= i;
+            for (int i = 3; i < n; i += 2) {
+                if (Xetsonguyento(i)) {
+                    System.out.print(i + ",");
+                }
             }
-            return giai_thua;
         }
     }
 
+
+    public static boolean Xetsonguyento(int n) {
+        if (n < 2) {
+            return false;
+        }
+        int canbachai = (int) Math.sqrt(n);
+        for (int i = 2; i <= canbachai; i++) {
+            if (n % i == 0) {
+                return false;
+            }
+        }
+        return true;
+    }
 }
+
